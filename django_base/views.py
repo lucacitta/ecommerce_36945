@@ -19,5 +19,7 @@ def probando_template(request):
     context = {
         'nombre':'Luca',
         'apellido':'Citta Giordano',
+        'fecha':datetime.now(),
+        'edades':[18,20,5,10,12,17,22,40]
     }
     return render(request, 'template_1.html', context = context)

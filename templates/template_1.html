@@ -7,9 +7,16 @@
     <title>Document</title>
 </head>
 <body>
+    <h3>{{fecha}}</h3>
     <h2>Mi nombre es {{nombre}}</h2>
     <h2>Mi apellido es {{apellido}}</h2>
 
-
+    {% for edad in edades %}
+        {% if edad >= 18 %}
+            <p style = color:green> edad es {{edad}} </p>
+        {% else %}
+            <p style = color:red> edad es {{edad}} </p>
+        {% endif %}
+    {% endfor %}
 </body>
 </html>
