@@ -1,10 +1,14 @@
-from django.http import HttpResponse
-
 from datetime import datetime
 
+<<<<<<< HEAD
 from django.template import Template, Context
 
 #from django.shortcuts import render
+=======
+from django.http import HttpResponse
+from django.shortcuts import render
+
+>>>>>>> main
 
 def saludo(request, nombre):
     return HttpResponse(f'Buenas tardes {nombre} :D')
@@ -17,6 +21,7 @@ def fecha_actual(request):
     mensaje = f'Hoy es {fecha} !!'
     return HttpResponse(mensaje)
 
+<<<<<<< HEAD
 def probandoTemplate(self):
 
     miHtml = open("C:/Users/Luca/Desktop/Programacion/CodeHouse/Django/ecommerce/templates/template_1.html")
@@ -36,3 +41,13 @@ from django.shortcuts import render
 
 def probando_template(request):
     return render(request, 'template_1.html', context = {})
+=======
+def probando_template(request):
+    context = {
+        'nombre':'Luca',
+        'apellido':'Citta Giordano',
+        'fecha':datetime.now(),
+        'edades':[18,20,5,10,12,17,22,40]
+    }
+    return render(request, 'template_1.html', context = context)
+>>>>>>> main
