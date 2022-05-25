@@ -7,8 +7,8 @@ from django.shortcuts import render
 def saludo(request, nombre):
     return HttpResponse(f'Buenas tardes {nombre} :D')
 
-def despedida(request):
-    return HttpResponse('<h1> Nos vemos, fue un gusto :) </h1>')
+def index(request):
+    return render(request, 'index.html')
 
 def fecha_actual(request):
     fecha = datetime.now().date()
