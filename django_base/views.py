@@ -1,14 +1,8 @@
 from datetime import datetime
 
-<<<<<<< HEAD
-from django.template import Template, Context
-
-#from django.shortcuts import render
-=======
 from django.http import HttpResponse
 from django.shortcuts import render
 
->>>>>>> main
 
 def saludo(request, nombre):
     return HttpResponse(f'Buenas tardes {nombre} :D')
@@ -21,27 +15,6 @@ def fecha_actual(request):
     mensaje = f'Hoy es {fecha} !!'
     return HttpResponse(mensaje)
 
-<<<<<<< HEAD
-def probandoTemplate(self):
-
-    miHtml = open("C:/Users/Luca/Desktop/Programacion/CodeHouse/Django/ecommerce/templates/template_1.html")
-
-    plantilla = Template(miHtml.read()) #Se carga en memoria nuestro documento, template1   
-    ##OJO importar template y contex, con: from django.template import Template, Context
-
-    miHtml.close() #Cerramos el archivo
-
-    miContexto = Context() #EN este caso no hay nada ya que no hay parametros, IGUAL hay que crearlo
-
-    documento = plantilla.render(miContexto) #Aca renderizamos la plantilla en documento
-
-    return HttpResponse(documento)
-
-from django.shortcuts import render
-
-def probando_template(request):
-    return render(request, 'template_1.html', context = {})
-=======
 def probando_template(request):
     context = {
         'nombre':'Luca',
@@ -50,4 +23,7 @@ def probando_template(request):
         'edades':[18,20,5,10,12,17,22,40]
     }
     return render(request, 'template_1.html', context = context)
->>>>>>> main
+
+
+def index(request):
+    return render(request, 'index.html', context = {})
