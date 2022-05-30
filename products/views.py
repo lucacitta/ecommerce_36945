@@ -7,3 +7,6 @@ def products(request):
         productos = Products.objects.all()
         context = {'productos':productos}
         return render(request, 'products.html', context=context)
+
+def contacto(request):
+        return render(request, 'contacto.html')
