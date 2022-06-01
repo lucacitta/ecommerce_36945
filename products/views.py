@@ -39,9 +39,9 @@ def create_products(request):
         return HttpResponse('Only GET and POST methods are allowed')
 
 def search_products(request):
-    print(request.GET)
+    print(request.GET['search'])
     try:
-        product = Products.objects.get(name__in=request.GET['search'])
+        product = Products.objects.get(name=request.GET['search'])
         context = {'product':product}
         return render(request, 'search_products.html', context = context)
     except:
