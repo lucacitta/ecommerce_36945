@@ -23,3 +23,6 @@ def probando_template(request):
         'edades':[18,20,5,10,12,17,22,40]
     }
     return render(request, 'template_1.html', context = context)
+
+def contact(request):
+    return render(request, 'contact.html')

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+Crear productos
+{% endblock %}
+
+{% block contenido %}
+
+<h1>Aca va el contenido de crear productos</h1>
+
+    {% if form %}
+        <h2>Complete los campos del nuevo producto</h2>
+        <form action="" method="POST">
+
+            {% csrf_token %}
+
+            <table>
+                {{form.as_table}}
+            </table>
+
+            <input type="submit" , value="Enviar">
+
+        </form>
+    {% elif new_product %}
+        <h2 style="color:green">Nuevo producto creado!!</h2>
+        <p>{{new_product.name}}</p>
+        <p>{{new_product.description}}</p>
+        <p>{{new_product.price}}</p>
+
+    {% else %}
+        <h2 style = "color:red"> Ocurrio un error en la carga del producto </h2>
+        
+            {{errors}}
+        
+    {% endif %}
+{% endblock %}
