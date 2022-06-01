@@ -6,31 +6,34 @@ Crear productos
 
 {% block contenido %}
 
-<h1>Aca va el contenido de crear productos</h1>
-
     {% if form %}
-        <h2>Complete los campos del nuevo producto</h2>
-        <form action="" method="POST">
-
+        <h2 style="margin-left:30rem">Complete los campos del nuevo producto</h2>
+        <form action="" method="POST" style="margin-left:40rem;margin-top:7rem">
             {% csrf_token %}
-
             <table>
                 {{form.as_table}}
             </table>
-
             <input type="submit" , value="Enviar">
-
         </form>
-    {% elif new_product %}
-        <h2 style="color:green">Nuevo producto creado!!</h2>
-        <p>{{new_product.name}}</p>
-        <p>{{new_product.description}}</p>
-        <p>{{new_product.price}}</p>
 
-    {% else %}
-        <h2 style = "color:red"> Ocurrio un error en la carga del producto </h2>
+
+
+    {% elif new_product %}
+        <h2 style="color:green; margin-left:33rem">Nuevo producto creado!!</h2>
+        <div class="card" style="width: 18rem;background-color: aqua;margin-top:4rem;margin-left:35rem">
+            <div class="card-body">
+                <h5 class="card-title">Nombre: {{new_product.name}}</h5>
+                <p class="card-text">Descripcion: {{new_product.description}}</p>
+                <p class="card-text">Precio: {{new_product.price}}</p>
+            </div>
+        </div>
+
+
+
+        {% else %}
+        <h2 style = "color:red; margin-left:25rem"> Ocurrio un error en la carga del producto </h2>
         
-            {{errors}}
+            <div style = "margin-left:25rem;">{{errors}}</div>
         
     {% endif %}
 {% endblock %}
