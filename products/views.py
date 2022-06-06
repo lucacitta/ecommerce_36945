@@ -5,15 +5,16 @@ from django.http import HttpResponse
 from products.models import Products
 from products.forms import Product_form
 
+def contacto(request):
+    return render(request, 'contacto.html')
+
+
 # Create your views here.
 def products(request):
-    print(request.method)
     productos = Products.objects.all()
     context = {'productos':productos}
     return render(request, 'products.html', context=context)
 
-def contacto(request):
-    return render(request, 'contacto.html')
 
 def create_product_view(request):
     if request.method == 'GET':
@@ -31,11 +32,16 @@ def create_product_view(request):
                 active = form.cleaned_data['active'],
             )
             context ={'new_product':new_product}
+        else:
+            context ={'errors':form.errors}
         return render(request, 'create_product.html', context=context)
 
 def search_product_view(request):
-    print(request.GET)
     #product = Products.objects.get()
-    products = Products.objects.filter(name__contains = request.GET['search'])
-    context = {'products':products}
+    palabra_busqueda = request.GET['search']
+    products = Products.objects.filter(name__icontains = palabra_busqueda)
+    if products.exists():
+        context = {'products':products}
+    else:
+        context = {'errors':f'Disculpe, no se encontro ningun producto con la palabra clave: {palabra_busqueda}'}
     return render(request, 'search_product.html', context = context)

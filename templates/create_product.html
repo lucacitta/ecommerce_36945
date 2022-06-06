@@ -26,6 +26,11 @@
             <p class="card-text">{{new_product.price}}</p>
         </div>
     </div>
+{% elif errors %}
+
+    <div style="color:red;">    
+        {{errors}}
+    </div>
 
 {% endif %}
 
