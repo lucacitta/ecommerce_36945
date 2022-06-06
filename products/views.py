@@ -17,10 +17,24 @@ def detail_product(request, pk):
         context = {'product':product}
         return render(request, 'product_detail.html', context=context)
     except:
-        context = {'error':'El Producto no exixste'}
+        context = {'error':'El Producto no existe'}
         return render(request, 'products.html', context=context)
 
+def delete_product(request, pk):
+    try:
+        if request.method == 'GET':
+            product = Products.objects.get(id=pk)
+            context = {'product':product}
+        else:
+            product = Products.objects.get(id=pk)
+            product.delete()
+            context = {'message':'Producto eliminado correctamente'}
 
+        return render(request, 'delete_product.html', context=context)
+
+    except:
+        context = {'error':'El Producto no existe'}
+        return render(request, 'delete_product.html', context=context)
 
 def create_products(request):
     if request.method == 'GET':
