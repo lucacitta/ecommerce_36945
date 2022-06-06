@@ -6,11 +6,8 @@ from products.forms import Product_form
 
 from django.urls import reverse
 
-from django.views.generic import ListView
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-# Create your views here.       
 def list_products(request):
     products = Products.objects.all()
     context = {'products':products}
@@ -42,7 +39,6 @@ def create_products(request):
 
     else:
         return HttpResponse('Only GET and POST methods are allowed')
-
 
 def search_products(request):
     if not request.GET['search'] == '':
