@@ -1,27 +1,26 @@
-from unicodedata import name
-from django.shortcuts import render
 from django.http import HttpResponse
+from django.shortcuts import render
 
 from products.models import Products
 from products.forms import Product_form
 
-def contacto(request):
-    return render(request, 'contacto.html')
 
-
-# Create your views here.
-def products(request):
-    productos = Products.objects.all()
-    context = {'productos':productos}
+# Create your views here.       
+def list_products(request):
+    products = Products.objects.all()
+    context = {'products':products}
     return render(request, 'products.html', context=context)
 
-
-def create_product_view(request):
+def create_products(request):
     if request.method == 'GET':
+
         form = Product_form()
         context = {'form':form}
-        return render(request, 'create_product.html', context=context)
-    else:
+
+        return render(request, 'create_products.html', context=context)
+
+    elif request.method == 'POST':
+        
         form = Product_form(request.POST)
         if form.is_valid():
             new_product = Products.objects.create(
@@ -31,17 +30,18 @@ def create_product_view(request):
                 SKU = form.cleaned_data['SKU'],
                 active = form.cleaned_data['active'],
             )
-            context ={'new_product':new_product}
+            context = {'new_product':new_product}
         else:
-            context ={'errors':form.errors}
-        return render(request, 'create_product.html', context=context)
+            context = {'errors':form.errors}
+        return render(request, 'create_products.html', context = context)
 
-def search_product_view(request):
-    #product = Products.objects.get()
-    palabra_busqueda = request.GET['search']
-    products = Products.objects.filter(name__icontains = palabra_busqueda)
+    else:
+        return HttpResponse('Only GET and POST methods are allowed')
+
+def search_products(request):
+    products = Products.objects.filter(name__icontains=request.GET['search'])
     if products.exists():
         context = {'products':products}
     else:
-        context = {'errors':f'Disculpe, no se encontro ningun producto con la palabra clave: {palabra_busqueda}'}
-    return render(request, 'search_product.html', context = context)
+        context = {'errors':'No se encontro el producto'}
+    return render(request, 'search_products.html', context = context)

@@ -6,7 +6,8 @@ from products.models import Products
 #     price = forms.FloatField()
 #     description = forms.CharField(max_length=200)
 #     SKU = forms.CharField(max_length=30)
-#     active = forms.BooleanField()
+#     active = forms.BooleanField(required=False)
+
 
 class Product_form(forms.ModelForm):
     class Meta:

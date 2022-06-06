@@ -5,12 +5,11 @@
 {% endblock %}
 
 {% block contenido %}
-<h1>Aca va el contenido de productos</h1>
+<h1 style="margin-left:30rem">Aca va el contenido de productos</h1>
 <div class="d-flex" style="margin-top:5rem; margin-left:7rem">
-    {% for product in productos %}
+    {% for product in products %}
 
     <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src=".../100px180/" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">{{product.name}}</h5>
             <p class="card-text">{{product.description}}</p>

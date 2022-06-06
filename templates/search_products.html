@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Productos
+{% endblock %}
+
+
+{% block contenido %}
+<h1 style="margin-left:30rem">Aca va el contenido de productos</h1>
+{% if products %}
+    <div class="d-flex" style="margin-top:5rem; margin-left:7rem">
+        {% for product in products %}
+            
+            <div class="d-flex" style="margin-top:5rem; margin-left:7rem">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{product.name}}</h5>
+                        <p class="card-text">{{product.description}}</p>
+                        <p class="card-text">{{product.price}}</p>
+                        <a href="#" class="btn btn-primary">Comprar!</a>
+                    </div>
+                </div>
+            </div>
+        
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+<div style = "color:red; margin-left:25rem">{{errors}}</div>
+
+{% endblock %}
