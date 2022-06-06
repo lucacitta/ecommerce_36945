@@ -11,6 +11,17 @@ def list_products(request):
     context = {'products':products}
     return render(request, 'products.html', context=context)
 
+def detail_product(request, pk):
+    try:
+        product = Products.objects.get(id=pk)
+        context = {'product':product}
+        return render(request, 'product_detail.html', context=context)
+    except:
+        context = {'error':'El Producto no exixste'}
+        return render(request, 'products.html', context=context)
+
+
+
 def create_products(request):
     if request.method == 'GET':
 
