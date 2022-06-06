@@ -28,7 +28,7 @@ def create_products(request):
                 price = form.cleaned_data['price'],
                 description = form.cleaned_data['description'],
                 SKU = form.cleaned_data['SKU'],
-                active = form.cleaned_data['active'],
+                is_active = form.cleaned_data['is_active'],
             )
             context = {'new_product':new_product}
         else:

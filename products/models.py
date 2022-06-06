@@ -5,7 +5,7 @@ class Products(models.Model):
     price = models.FloatField()
     description = models.CharField(max_length=200, blank=True, null=True)
     SKU = models.CharField(max_length=30, unique=True)
-    active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = 'producto'
