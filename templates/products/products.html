@@ -7,6 +7,19 @@
 {% block contenido %}
 <h1 style="margin-left:30rem">Aca va el contenido de productos</h1>
 <div class="d-flex" style="margin-top:5rem; margin-left:7rem">
+    {% for product in object_list %}
+
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{product.name}}</h5>
+            <p class="card-text">{{product.description}}</p>
+            <p class="card-text">{{product.price}}</p>
+            <a href="/products/detail-product-api-view/{{product.id}}/" class="btn btn-primary">Ver mas</a>
+        </div>
+    </div>
+
+    {% endfor %}
+
     {% for product in products %}
 
     <div class="card" style="width: 18rem;">
@@ -14,7 +27,7 @@
             <h5 class="card-title">{{product.name}}</h5>
             <p class="card-text">{{product.description}}</p>
             <p class="card-text">{{product.price}}</p>
-            <a href="#" class="btn btn-primary">Comprar!</a>
+            <a href="/products/detail-product-api-view/{{product.id}}/" class="btn btn-primary">Ver mas</a>
         </div>
     </div>
 

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Eliminar
+{% endblock %}
+
+{% block contenido %}
+    <h1 style="margin-left:30rem">Aca va el contenido de product delete</h1>
+    <div class="d-flex" style="margin-top:5rem; margin-left:7rem">
+
+    <form method = 'POST'>
+        {% csrf_token %}
+        <H3 style="color: red">Estas seguro que deseas eliminar el product {{object.name}} ?</H3>
+        <input type="submit" name="Submit" value="Eliminar">
+    </form>
+
+    </div>
+
+{% endblock %}

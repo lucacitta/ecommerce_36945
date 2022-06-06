@@ -8,7 +8,7 @@ Crear productos
 
     {% if form %}
         <h2 style="margin-left:30rem">Complete los campos del nuevo producto</h2>
-        <form action="" method="POST" style="margin-left:40rem;margin-top:7rem">
+        <form method="POST" style="margin-left:40rem;margin-top:7rem">
             {% csrf_token %}
             <table>
                 {{form.as_table}}
