@@ -40,6 +40,14 @@ def create_products(request):
     else:
         return HttpResponse('Only GET and POST methods are allowed')
 
+def detail_product(request, pk):
+    try:
+        product = Products.objects.get(id = pk)
+        context = {'object':product}
+    except:
+        context = {'error':'Hubo un error, no se encontro el producto solicitado'}
+    return render(request, 'products/product_detail.html', context=context)
+
 def search_products(request):
     if not request.GET['search'] == '':
         products = Products.objects.filter(name__icontains=request.GET['search'])
