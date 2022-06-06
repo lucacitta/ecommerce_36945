@@ -5,7 +5,7 @@ from django.urls import reverse
 from products.models import Products
 from products.forms import Product_form
 
-from django.views.generic import ListView, DetailView, CreateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 
 
 class List_products(ListView):
@@ -31,6 +31,15 @@ class Delete_product(DeleteView):
 
     def get_success_url(self):
         return reverse('list_products')
+
+class Update_product(UpdateView):
+    model = Products
+    template_name = 'update_product.html'
+    fields = '__all__'
+
+
+    def get_success_url(self):
+        return reverse('detail_product', kwargs = {'pk':self.object.pk})
 
 
 
