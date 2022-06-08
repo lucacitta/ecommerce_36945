@@ -1,10 +1,10 @@
 from datetime import datetime
 
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 def login_view(request):
 
@@ -34,6 +34,9 @@ def login_view(request):
         context = {'form':form}
         return render(request, 'auth/login.html', context = context)
 
+def logout_view(request):
+    logout(request)
+    return redirect('index')
 
 def index(request):
     print(request.user)
