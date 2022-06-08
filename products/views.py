@@ -7,17 +7,18 @@ from products.forms import Product_form
 
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class List_products(ListView):
     model = Products
     template_name= 'products/products.html'
     queryset = Products.objects.filter(is_active = True)
 
-class Detail_product(DetailView):
+class Detail_product(LoginRequiredMixin, DetailView):
     model = Products
     template_name= 'products/detail_product.html'
 
-class Create_product(CreateView):
+class Create_product(LoginRequiredMixin, CreateView):
     model = Products
     template_name = 'products/create_products.html'
     fields = '__all__'
