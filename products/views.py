@@ -10,16 +10,16 @@ from django.views.generic import ListView, DetailView, CreateView, DeleteView, U
 
 class List_products(ListView):
     model = Products
-    template_name= 'products.html'
+    template_name= 'products/products.html'
     queryset = Products.objects.filter(is_active = True)
 
 class Detail_product(DetailView):
     model = Products
-    template_name= 'detail_product.html'
+    template_name= 'products/detail_product.html'
 
 class Create_product(CreateView):
     model = Products
-    template_name = 'create_products.html'
+    template_name = 'products/create_products.html'
     fields = '__all__'
 
     def get_success_url(self):
@@ -27,20 +27,28 @@ class Create_product(CreateView):
 
 class Delete_product(DeleteView):
     model = Products
-    template_name = 'delete_product.html'
+    template_name = 'products/delete_product.html'
 
     def get_success_url(self):
         return reverse('list_products')
 
 class Update_product(UpdateView):
     model = Products
-    template_name = 'update_product.html'
+    template_name = 'products/update_product.html'
     fields = '__all__'
 
 
     def get_success_url(self):
         return reverse('detail_product', kwargs = {'pk':self.object.pk})
 
+
+def search_products(request):
+    products = Products.objects.filter(name__icontains=request.GET['search'])
+    if products.exists():
+        context = {'products':products}
+    else:
+        context = {'errors':'No se encontro el producto'}
+    return render(request, 'products/search_products.html', context = context)
 
 
 # Create your views here.       
@@ -105,10 +113,3 @@ class Update_product(UpdateView):
 
 
 
-def search_products(request):
-    products = Products.objects.filter(name__icontains=request.GET['search'])
-    if products.exists():
-        context = {'products':products}
-    else:
-        context = {'errors':'No se encontro el producto'}
-    return render(request, 'search_products.html', context = context)
