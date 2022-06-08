@@ -3,8 +3,10 @@ from datetime import datetime
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+
 
 from django_base.forms import User_registration_form
 
@@ -71,7 +73,12 @@ def index(request):
     return render(request, 'index.html')
 
 
-
+def contact(request):
+    if request.user.is_authenticated and request.user.is_superuser:
+        print(request.user.username)
+        return render(request, 'contact.html')
+    else:
+        return redirect('login')
 
 
 
@@ -96,5 +103,4 @@ def probando_template(request):
     }
     return render(request, 'template_1.html', context = context)
 
-def contact(request):
-    return render(request, 'contact.html')
+
