@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Perfil de usuario
+{% endblock %}
+
+{% block contenido %}
+<h1 style="margin-left:30rem">Aca va el contenido de perfil de usuario</h1>
+<div class="d-flex" style="margin-top:5rem; margin-left:7rem">
+
+    <div class="card" style="width: 18rem;">
+        <img src="{{object.profile_image.url}}" class="card-img-top">
+        <div class="card-body">
+            <h5 class="card-title">{{object.phone}}</h5>
+            <a href="/users/update-user-profile/{{object.id}}/" class="btn btn-primary">Editar</a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

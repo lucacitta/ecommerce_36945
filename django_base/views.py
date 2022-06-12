@@ -38,7 +38,6 @@ def login_view(request):
         context = {'form':form}
         return render(request, 'auth/login.html', context = context)
 
-
 def register_view(request):
     if request.method == 'POST':
         form = User_registration_form(request.POST)
@@ -61,17 +60,12 @@ def register_view(request):
         context = {'form':form}
         return render(request, 'auth/register.html', context =context)
 
-
-
 def logout_view(request):
     logout(request)
     return redirect('index')
 
 def index(request):
-    print(request.user)
-    print(request.user.is_authenticated)
     return render(request, 'index.html')
-
 
 def contact(request):
     if request.user.is_authenticated and request.user.is_superuser:
