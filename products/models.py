@@ -7,6 +7,7 @@ class Products(models.Model):
     SKU = models.CharField(max_length=30, unique=True)
     is_active = models.BooleanField(default=True)
     category = models.ForeignKey('Categoria', on_delete=models.CASCADE, related_name='products')
+    image = models.ImageField(upload_to = 'products', blank=True, null=True)
 
     class Meta:
         verbose_name = 'producto'

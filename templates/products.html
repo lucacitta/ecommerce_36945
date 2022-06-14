@@ -13,6 +13,9 @@
     {% for product in object_list %}
 
     <div class="card" style="width: 18rem;">
+        {% if product.image %}
+        <img src="{{product.image.url}}" class="card-img-top" >
+        {% endif %}
         <div class="card-body">
             <h5 class="card-title">{{product.name}}</h5>
             <p class="card-text">{{product.description}}</p>
